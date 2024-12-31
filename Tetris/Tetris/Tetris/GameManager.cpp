@@ -3,7 +3,7 @@
 
 void GameManager::Initialize()
 {
-	SetConsoleFont(L"MS Gothic", 16, 16);	
+	SetConsoleFont(L"MS Gothic", 16, 16);
 
 	systems.reserve(4);
 	pRenderer = new ConsoleDoubleBuffer();
