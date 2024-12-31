@@ -1,17 +1,17 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "D:\\seyoung\\Maze\\",
+  "WorkspaceRootPath": "D:\\seyoung\\Study\\Maze\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{57621DB9-D1AC-45EC-8F12-EB7D56E558CA}|Maze\\Maze.vcxproj|D:\\seyoung\\Maze\\Maze\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "AbsoluteMoniker": "D:0:0:{57621DB9-D1AC-45EC-8F12-EB7D56E558CA}|Maze\\Maze.vcxproj|D:\\seyoung\\Study\\Maze\\Maze\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{57621DB9-D1AC-45EC-8F12-EB7D56E558CA}|Maze\\Maze.vcxproj|solutionrelative:Maze\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{57621DB9-D1AC-45EC-8F12-EB7D56E558CA}|Maze\\Maze.vcxproj|D:\\seyoung\\Maze\\Maze\\maze.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "AbsoluteMoniker": "D:0:0:{57621DB9-D1AC-45EC-8F12-EB7D56E558CA}|Maze\\Maze.vcxproj|D:\\seyoung\\Study\\Maze\\Maze\\maze.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{57621DB9-D1AC-45EC-8F12-EB7D56E558CA}|Maze\\Maze.vcxproj|solutionrelative:Maze\\maze.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{57621DB9-D1AC-45EC-8F12-EB7D56E558CA}|Maze\\Maze.vcxproj|D:\\seyoung\\Maze\\Maze\\maze.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "AbsoluteMoniker": "D:0:0:{57621DB9-D1AC-45EC-8F12-EB7D56E558CA}|Maze\\Maze.vcxproj|D:\\seyoung\\Study\\Maze\\Maze\\maze.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{57621DB9-D1AC-45EC-8F12-EB7D56E558CA}|Maze\\Maze.vcxproj|solutionrelative:Maze\\maze.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     }
   ],
@@ -28,11 +28,11 @@
               "$type": "Document",
               "DocumentIndex": 2,
               "Title": "maze.h",
-              "DocumentMoniker": "D:\\seyoung\\Maze\\Maze\\maze.h",
+              "DocumentMoniker": "D:\\seyoung\\Study\\Maze\\Maze\\maze.h",
               "RelativeDocumentMoniker": "Maze\\maze.h",
-              "ToolTip": "D:\\seyoung\\Maze\\Maze\\maze.h",
+              "ToolTip": "D:\\seyoung\\Study\\Maze\\Maze\\maze.h",
               "RelativeToolTip": "Maze\\maze.h",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAAMAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAACAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2024-12-30T00:04:23.516Z",
               "EditorCaption": ""
@@ -41,11 +41,11 @@
               "$type": "Document",
               "DocumentIndex": 1,
               "Title": "maze.cpp",
-              "DocumentMoniker": "D:\\seyoung\\Maze\\Maze\\maze.cpp",
+              "DocumentMoniker": "D:\\seyoung\\Study\\Maze\\Maze\\maze.cpp",
               "RelativeDocumentMoniker": "Maze\\maze.cpp",
-              "ToolTip": "D:\\seyoung\\Maze\\Maze\\maze.cpp",
+              "ToolTip": "D:\\seyoung\\Study\\Maze\\Maze\\maze.cpp",
               "RelativeToolTip": "Maze\\maze.cpp",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAPAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAFEAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2024-12-30T00:04:15.442Z",
               "EditorCaption": ""
@@ -54,11 +54,11 @@
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "main.cpp",
-              "DocumentMoniker": "D:\\seyoung\\Maze\\Maze\\main.cpp",
+              "DocumentMoniker": "D:\\seyoung\\Study\\Maze\\Maze\\main.cpp",
               "RelativeDocumentMoniker": "Maze\\main.cpp",
-              "ToolTip": "D:\\seyoung\\Maze\\Maze\\main.cpp",
+              "ToolTip": "D:\\seyoung\\Study\\Maze\\Maze\\main.cpp",
               "RelativeToolTip": "Maze\\main.cpp",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAACAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABoAAAAYAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2024-12-30T00:04:02.678Z",
               "EditorCaption": ""

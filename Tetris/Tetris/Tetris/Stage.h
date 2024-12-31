@@ -29,11 +29,22 @@ private:
 	/// block이 현재 존재 할 수 있는 위치에 있는지 체크하는 함수
 	/// </summary>
 	/// <param name="block">체크할 블록</param>
+	/// <param name="pTargetPosition">체크할 위치(null이면 블록의 위치를 사용)</param>
 	/// <returns>true면 이동할 수 있는 위치에 있다. false면 이동 불가능한 위치에 있다.</returns>
-	bool CheckValidPosition(const DropBlock& block);
+	bool CheckValidPosition(const DropBlock& block, const Position* pTargetPosition = nullptr);
+
+	/// <summary>
+	/// block이 한칸 아래로 내려온 상황에서 처리해야 할 일을 하는 함수
+	/// </summary>
+	/// <param name="block">내려온 블록</param>
+	/// <returns>true 성공적으로 내려옴, false면 막혀서 못내려감</returns>
+	bool MoveDownProcess(const DropBlock& block);
 
 	// 하드드랍 처리용 함수
 	void HardDropProcess(const DropBlock& block);
+
+	// 월킥 처리용 함수(리턴이 true면 월킥 성공, false면 실패)
+	bool WallKickProcess(const DropBlock& block);
 
 	/// <summary>
 	/// 블럭 떨어질 때의 바닥을 찾는 함수
@@ -65,6 +76,9 @@ private:
 	/// <param name="end">체크가 끝날 줄(제일 윗줄)</param>
 	void ClearFullLines(int start, int end);
 
+	// 패널티 블록들을 생성하는 함수
+	void GeneratePenaltyBlocks();
+
 	// 게임 오버인지 체크하는 함수(true면 게임오버, false면 게임오버가 아님)
 	bool CheckGameOver();
 
@@ -72,12 +86,12 @@ private:
 	static const unsigned int StageHeight = 20;		// 게임 판의 세로 길이
 
 	static const unsigned int SpawnHeight = 4;		// 처음 블록이 생성되는 곳의 높이
-	
+
 	static const unsigned int LinesHeight = StageHeight + SpawnHeight;		// 테트로미노가 존재할 수 있는 높이 = 게임 판의 세로 길이 + 처음 블록이 생성되는 곳의 높이
 
-	static const unsigned int FullWidth = StageWidth + 2;	// 게임에서 사용되는 최종 너비(테두리 2줄)
+	static const unsigned int FullWidth = StageWidth + 2;	// 게임에서 사용되는 최종 너피(테두리 2줄)
 	static const unsigned int FullHeight = LinesHeight + 1;	// 게임에서 사용되는 최종 높이(테두리 1줄)
-	
+
 	/* 배경의 형태
 	000000000000
 	000000000000
@@ -103,7 +117,7 @@ private:
 	100000000001
 	100000000001
 	100000000001
-	111111111111	
+	111111111111
 	*/
 
 	// 배경 정보
@@ -159,6 +173,12 @@ private:
 
 	// 게임 내 원점
 	const Position Origin = { 1, 0 };
-	
+
+	// 패널티 블록 생성 주기
+	float penaltyInterval = 5.0f;
+
+	// 마지막 패널티 블록 생성 시점에서 지난 시간
+	float penaltyElapsedTime = 0.0f;
+
 };
 

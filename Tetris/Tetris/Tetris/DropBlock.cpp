@@ -32,6 +32,13 @@ void DropBlock::Initialize()
 
 void DropBlock::Update(float deltaTime)
 {
+	elapsedTime += deltaTime * timeModifier;
+	if (elapsedTime > dropInterval)   // 누적된 시간이 dropInterval을 넘어섰으면
+	{
+		MoveDown();
+		// 한칸 아래로 이동시키는 함수 실행
+		elapsedTime = 0.0f;
+	}
 }
 
 void DropBlock::Destroy()
@@ -99,6 +106,20 @@ void DropBlock::HardDrop()
 	}
 }
 
+void DropBlock::MoveFast(bool isFast)
+{
+	if (isFast)
+	{
+		timeModifier = SoftDropSpeed;
+	}
+
+	else
+	{
+		timeModifier = NormalDropSpeed;
+	}
+	
+}
+
 Tetromino* DropBlock::GetRandomTetromino()
 {
 	if (bag.empty())					// 가방이 비었으면
@@ -110,4 +131,16 @@ Tetromino* DropBlock::GetRandomTetromino()
 	bag.erase(bag.begin());		// 가방의 첫번째 항목을 삭제하기
 	
 	return tetrominos[index];	// 꺼낸 값을 인덱스로 사용해서 테트로미노 리턴
+}
+
+void DropBlock::MoveDown()
+{
+	currentPosition.y++;
+	if (onMoveDown)
+	{
+		if (!onMoveDown(*this))
+		{
+			Reset();   // 성공적으로 내려가지 못함( = 라인에 추가되었음) => 리셋
+        }
+	}
 }

@@ -1,4 +1,7 @@
 #include "Stage.h"
+#include "Random.h"
+#include "Logger.h"
+#include "GameManager.h"
 
 void Stage::Initialize()
 {
@@ -13,8 +16,9 @@ void Stage::Initialize()
 	pDropBlock = new DropBlock();
 	pDropBlock->Initialize();
 
-	pDropBlock->onMoveSide = std::bind(&Stage::CheckValidPosition, this, std::placeholders::_1);
-	pDropBlock->onSpin = std::bind(&Stage::CheckValidPosition, this, std::placeholders::_1);
+	pDropBlock->onMoveDown = std::bind(&Stage::MoveDownProcess, this, std::placeholders::_1);
+	pDropBlock->onMoveSide = std::bind(&Stage::CheckValidPosition, this, std::placeholders::_1, nullptr);
+	pDropBlock->onSpin = std::bind(&Stage::WallKickProcess, this, std::placeholders::_1);
 	pDropBlock->onHardDrop = std::bind(&Stage::HardDropProcess, this, std::placeholders::_1);
 }
 
@@ -27,11 +31,17 @@ void Stage::Destroy()
 
 	// 출력 텍스트 제거
 	delete renderText;
-	renderText = nullptr;	
+	renderText = nullptr;
 }
 
 void Stage::Update(float deltaTime)
 {
+	penaltyElapsedTime += deltaTime;
+	if (penaltyElapsedTime > penaltyInterval)
+	{
+		GeneratePenaltyBlocks();	// 주기적으로 패널티 블록 생성
+		penaltyElapsedTime = 0.0f;
+	}
 	pDropBlock->Update(deltaTime);
 
 	DataToText();	// 마지막 줄에 있어야 함
@@ -43,7 +53,7 @@ void Stage::DataToText()
 
 	// 배경 데이터 넣기
 	// StageBackground에 있는 데이터를 canvas로 (sizeof(CellType) * FullWidth * FullHeight)만큼 복사
-	memcpy(canvas, StageBackground, sizeof(CellType) * FullWidth * FullHeight);		
+	memcpy(canvas, StageBackground, sizeof(CellType) * FullWidth * FullHeight);
 
 	// 라인 데이터 넣기
 	for (int y = 0; y < LinesHeight; y++)
@@ -58,17 +68,17 @@ void Stage::DataToText()
 	}
 
 	// 블록 데이터 넣기
-	 const Position* pPositions = pDropBlock->GetCurrent()->GetMinos();
-	 const Position position = Origin + pDropBlock->GetCurrentPosition();	// 원점에 드랍블럭의 위치 더하기
-	 for (int i = 0; i < Tetromino::TetroCount; i++)
-	 {
-		 int x = position.x + pPositions[i].x;
-		 int y = position.y + pPositions[i].y;
-		 canvas[y][x] = CellType::Block;
-	 }
+	const Position* pPositions = pDropBlock->GetCurrent()->GetMinos();
+	const Position position = Origin + pDropBlock->GetCurrentPosition();  // 원점에 드랍블럭의 위치 더하기
+	for (int i = 0; i < Tetromino::TetroCount; i++)
+	{
+		int x = position.x + pPositions[i].x;
+		int y = position.y + pPositions[i].y;
+		canvas[y][x] = CellType::Block;
+	}
 
 	// 텍스트로 변경하기
-	memset(renderText, 0, canvasTextArraySize);	// 일단 깨끗하게 정리
+	memset(renderText, 0, canvasTextArraySize);	                          // 일단 깨끗하게 정리
 	for (int y = 0; y < FullHeight; y++)
 	{
 		for (int x = 0; x < FullWidth; x++)
@@ -80,27 +90,41 @@ void Stage::DataToText()
 	}
 }
 
-bool Stage::CheckValidPosition(const DropBlock& block)
+bool Stage::CheckValidPosition(const DropBlock& block, const Position* pTargetPosition)
 {
-	const Position* pTargetPosition = &block.GetCurrentPosition();		// 현재 위치
-	const Position* pMinoPositions = block.GetCurrent()->GetMinos();	// 각각의 위치
+	const Position* pMinoPositions = block.GetCurrent()->GetMinos();	 // 각각의 위치
+
+	if (pTargetPosition == nullptr)
+		pTargetPosition = &block.GetCurrentPosition();		             // 현재 위치
 
 	bool isSuccess = true;
-		
+
 	int size = static_cast<int>(Tetromino::TetroCount);
 	for (int i = 0; i < size; i++)
 	{
-		Position minoPos = *pTargetPosition + *(pMinoPositions + i);	// 현재 위치 + 각각의 위치(i번째)
-		if (!(minoPos.x >= 0 && minoPos.x < StageWidth)			// 위치 중 하나가 좌우의 경계랑 겹치거나 나갔다.
-			|| !(minoPos.y >= 0 && minoPos.y < LinesHeight)		// 위치 중 하나가 위아래의 경계랑 겹치거나 나갔다.
-			/*바닥에 쌓인 블럭과 체크 필요*/)
-		{
+		Position minoPos = *pTargetPosition + *(pMinoPositions + i);	 // 현재 위치 + 각각의 위치(i번째)
+		if (!(minoPos.x >= 0 && minoPos.x < StageWidth)					 // 위치 중 하나가 좌우의 경계랑 겹치거나 나갔다.
+			|| !(minoPos.y >= 0 && minoPos.y < LinesHeight)				 // 위치 중 하나가 위아래의 경계랑 겹치거나 나갔다.
+			|| lineData[minoPos.y][minoPos.x] != CellType::Blank)		 // 빈칸이 아닌 경우
+		{ 
 			isSuccess = false;
 			break;
 		}
 	}
 
 	return isSuccess;
+}
+
+bool Stage::MoveDownProcess(const DropBlock& block)
+{
+	Position position = block.GetCurrentPosition();
+	bool isMovable = CheckMovablePosition(position, block.GetCurrent()->GetMinos());
+	if (!isMovable)
+	{
+		position.y--;	// 한칸 위쪽으로 처리
+		AddLine(position, block);
+	}
+	return isMovable;
 }
 
 void Stage::HardDropProcess(const DropBlock& block)
@@ -120,10 +144,34 @@ void Stage::HardDropProcess(const DropBlock& block)
 	const_cast<DropBlock&>(block).Reset();
 
 	// 게임 오버가 되었는지 안되었는지 체크
-	if( CheckGameOver() )
+	if (CheckGameOver())
 	{
-		Logger::Print("Game Over!");
-	}	
+		Logger::Print("Game Over!\n");
+		GameManager::Get().ExcuteGameOver();
+	}
+}
+
+bool Stage::WallKickProcess(const DropBlock& block)
+{
+	bool isSuccess = CheckValidPosition(block);
+	if (!isSuccess)
+	{
+		const Position kickTable[5] = { {1,0}, {-1,0}, {0,-1}, {2,0}, {-2,0} };	// 5개의 방향 확인
+		int kickCount = 5;
+		Position basePosition = block.GetCurrentPosition();
+
+		for (int i = 0; i < kickCount; i++)
+		{
+			Position target = basePosition + kickTable[i];	// 기본 위치에서 킥테이블에 지정된만큼 이동한 위치를 체크
+			isSuccess = CheckValidPosition(block, &target);
+			if (isSuccess)
+			{
+				const_cast<DropBlock&>(block).SetCurrentPosition(target);	// 새 위치로 이동이 가능하면 위치 재설정하고 종료
+				break;
+			}
+		}
+	}
+	return isSuccess;
 }
 
 Position Stage::FindGroundPosition(const Position& blockPosition, const Position* pMinoPositions)
@@ -208,7 +256,37 @@ void Stage::ClearFullLines(int start, int end)
 	for (auto rIter = fullLines.rbegin(); rIter != fullLines.rend(); rIter++)
 	{
 		// 첫줄부터 가득찬 줄 앞까지 통채로 한줄 내리기
-		memmove(&lineData[1][0], &lineData[0][0], sizeof(CellType) * StageWidth * (*rIter));	
+		memmove(&lineData[1][0], &lineData[0][0], sizeof(CellType) * StageWidth * (*rIter));
+	}
+}
+
+void Stage::GeneratePenaltyBlocks()
+{
+	// 모든 라인을 위로 한칸 옮기기
+	memmove(&lineData[0][0], &lineData[1][0], sizeof(CellType) * StageWidth * (LinesHeight - 1));
+
+	// 마지막줄에 블럭들을 랜덤하게 생성하기(각 칸별로 80% 확률로 생성)
+	for (int i = 0; i < StageWidth; i++)
+	{
+		if (Random::Get().GetRandomFloat() < 0.9f)
+		{
+			// 90% 확률
+			lineData[LinesHeight - 1][i] = CellType::Line;
+		}
+		else
+		{
+			// 10% 확률
+			lineData[LinesHeight - 1][i] = CellType::Blank;
+		}
+	}
+	int index = Random::Get().GetRandom(10);
+	lineData[LinesHeight - 1][index] = CellType::Blank;	// 하나는 확정
+
+	// 게임 오버 체크
+	if (CheckGameOver())
+	{
+		Logger::Print("Game Over!\n");
+		GameManager::Get().ExcuteGameOver();
 	}
 }
 

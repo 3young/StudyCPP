@@ -13,6 +13,9 @@ public:
 	bool Loop();
 	void Destroy();
 
+	void ExcuteGameOver();
+
+
 	inline float GetDeltaTime() const { return deltaTime; }	// inline 함수 : 컴파일 타임에 코드 교체가 일어남
 
 	// 입력 시스템 함수 래핑
@@ -50,6 +53,8 @@ private:
 
 	clock_t lastTime = -1;
 
+	// 게임오버가 되었는지 표시하는 변수
+	bool isGameOver = false;
 
 	void SetConsoleFont(const wchar_t* fontName, SHORT sizeX, SHORT sizeY);
 
