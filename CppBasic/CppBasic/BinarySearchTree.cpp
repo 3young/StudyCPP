@@ -57,7 +57,8 @@ TreeNode* BinarySearchTree::InsertRecursive(TreeNode* currentRoot, int key, int 
 
 	if (key < (currentRoot->key))
 	{
-		// key가 root의 키보다 작으면 왼쪽으로 보내기(root의 왼쪽 자식이 비었으면 새로 노드가 만들어져서 리턴됨)
+		// key가 root의 키보다 작으면 왼쪽으로 보내기
+		// (root의 왼쪽 자식이 비었으면 새로 노드가 만들어져서 리턴됨)
 		currentRoot->leftChild = InsertRecursive(currentRoot->leftChild, key, data);	
 	}
 	else if (key > (currentRoot->key))
@@ -100,12 +101,14 @@ TreeNode* BinarySearchTree::DeleteRecursive(TreeNode* currentRoot, int key)
 			delete currentRoot;
 			return temp;
 		}
-
 		// 자식이 둘 다 있는 경우
-		TreeNode* minNode = FindMinNode(currentRoot->rightChild);	// 오른쪽에서 가장 키값이 가장 작은 노드를 찾기
-		currentRoot->key = minNode->key;		// 루트의 키값과 데이터를 가장 작은 노드의 값으로 대체
+		TreeNode* minNode = FindMinNode(currentRoot->rightChild);	
+		// 오른쪽에서 가장 키값이 가장 작은 노드를 찾기
+		currentRoot->key = minNode->key;		
+		// 루트의 키값과 데이터를 가장 작은 노드의 값으로 대체
 		currentRoot->data = minNode->data;
-		currentRoot->rightChild = DeleteRecursive(currentRoot->rightChild, minNode->key);	// 가장 작은 노드를 삭제 + 오른쪽 서브트리도 갱신
+		currentRoot->rightChild = DeleteRecursive(currentRoot->rightChild, minNode->key);	
+		// 가장 작은 노드를 삭제 + 오른쪽 서브트리도 갱신
 	}
 
 	return currentRoot;

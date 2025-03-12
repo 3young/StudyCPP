@@ -892,6 +892,7 @@ void Test::Test_1224_STL()
 		// 키가 없다.
 	}
 
+	// 문자열 키를 가지는 맵 예시
 	std::map<std::string, int> mapName;
 	mapName["AAA"] = 10;
 	mapName["BBB"] = 50;

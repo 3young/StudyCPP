@@ -3,8 +3,10 @@ class MyClass
 {
 public:
 	float height;
+	
 private:
 	int age;
+
 public:
 	char* name;
 };

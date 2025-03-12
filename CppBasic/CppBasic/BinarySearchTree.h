@@ -13,8 +13,8 @@ struct TreeNode
 			this->data = data;		// 그 외에는 입력받은대로 처리
 		}
 	}
-	int key = 0;	// 순서가 있는 키 값
-	int data = 0;	// 이 노드가 가지는 데이터
+	int key = 0;	                // 순서가 있는 키 값
+	int data = 0;	                // 이 노드가 가지는 데이터
 
 	TreeNode* leftChild = nullptr;	// 이 노드의 왼쪽 자식
 	TreeNode* rightChild = nullptr;	// 이 노드의 오른쪽 자식

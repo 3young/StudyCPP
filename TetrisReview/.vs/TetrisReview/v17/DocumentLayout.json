@@ -1,0 +1,88 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Atents\\Study\\TetrisReview\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{32CDFDDD-60AF-498B-9B98-D99E8CCB44B1}|TetrisReview\\TetrisReview.vcxproj|C:\\Atents\\Study\\TetrisReview\\TetrisReview\\ConsoleDoubleBuffer.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{32CDFDDD-60AF-498B-9B98-D99E8CCB44B1}|TetrisReview\\TetrisReview.vcxproj|solutionrelative:TetrisReview\\ConsoleDoubleBuffer.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{32CDFDDD-60AF-498B-9B98-D99E8CCB44B1}|TetrisReview\\TetrisReview.vcxproj|C:\\Atents\\Study\\TetrisReview\\TetrisReview\\ConsoleDoubleBuffer.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{32CDFDDD-60AF-498B-9B98-D99E8CCB44B1}|TetrisReview\\TetrisReview.vcxproj|solutionrelative:TetrisReview\\ConsoleDoubleBuffer.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{32CDFDDD-60AF-498B-9B98-D99E8CCB44B1}|TetrisReview\\TetrisReview.vcxproj|C:\\Atents\\Study\\TetrisReview\\TetrisReview\\Test.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{32CDFDDD-60AF-498B-9B98-D99E8CCB44B1}|TetrisReview\\TetrisReview.vcxproj|solutionrelative:TetrisReview\\Test.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{32CDFDDD-60AF-498B-9B98-D99E8CCB44B1}|TetrisReview\\TetrisReview.vcxproj|C:\\Atents\\Study\\TetrisReview\\TetrisReview\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{32CDFDDD-60AF-498B-9B98-D99E8CCB44B1}|TetrisReview\\TetrisReview.vcxproj|solutionrelative:TetrisReview\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "ConsoleDoubleBuffer.cpp",
+              "DocumentMoniker": "C:\\Atents\\Study\\TetrisReview\\TetrisReview\\ConsoleDoubleBuffer.cpp",
+              "RelativeDocumentMoniker": "TetrisReview\\ConsoleDoubleBuffer.cpp",
+              "ToolTip": "C:\\Atents\\Study\\TetrisReview\\TetrisReview\\ConsoleDoubleBuffer.cpp",
+              "RelativeToolTip": "TetrisReview\\ConsoleDoubleBuffer.cpp",
+              "ViewState": "AQIAABgAAAAAAAAAAAAUwCYAAAAXAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-01-05T13:03:08.721Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ConsoleDoubleBuffer.h",
+              "DocumentMoniker": "C:\\Atents\\Study\\TetrisReview\\TetrisReview\\ConsoleDoubleBuffer.h",
+              "RelativeDocumentMoniker": "TetrisReview\\ConsoleDoubleBuffer.h",
+              "ToolTip": "C:\\Atents\\Study\\TetrisReview\\TetrisReview\\ConsoleDoubleBuffer.h",
+              "RelativeToolTip": "TetrisReview\\ConsoleDoubleBuffer.h",
+              "ViewState": "AQIAAAEAAAAAAAAAAAAUwCwAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-01-05T12:55:51.028Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Test.h",
+              "DocumentMoniker": "C:\\Atents\\Study\\TetrisReview\\TetrisReview\\Test.h",
+              "RelativeDocumentMoniker": "TetrisReview\\Test.h",
+              "ToolTip": "C:\\Atents\\Study\\TetrisReview\\TetrisReview\\Test.h",
+              "RelativeToolTip": "TetrisReview\\Test.h",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAEAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-01-05T12:55:36.669Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "main.cpp",
+              "DocumentMoniker": "C:\\Atents\\Study\\TetrisReview\\TetrisReview\\main.cpp",
+              "RelativeDocumentMoniker": "TetrisReview\\main.cpp",
+              "ToolTip": "C:\\Atents\\Study\\TetrisReview\\TetrisReview\\main.cpp",
+              "RelativeToolTip": "TetrisReview\\main.cpp",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-01-05T12:55:25.917Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
